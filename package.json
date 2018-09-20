@@ -1,11 +1,11 @@
 {
   "name": "noderify",
   "description": "browserify for node",
-  "version": "3.0.1",
-  "homepage": "https://github.com/dominictarr/noderify",
+  "version": "4.0.0",
+  "homepage": "https://github.com/staltz/noderify",
   "repository": {
     "type": "git",
-    "url": "git://github.com/dominictarr/noderify.git"
+    "url": "git://github.com/staltz/noderify.git"
   },
   "dependencies": {
     "minimist": "^1.1.2",
@@ -24,6 +24,15 @@
     "prepublish": "./test/index.sh && ./index.js index.js > bin.js && npm ls",
     "test": "./test/index.sh"
   },
-  "author": "Dominic Tarr <dominic.tarr@gmail.com> (http://dominictarr.com)",
+  "contributors": [
+    {
+      "name": "Andre Staltz",
+      "email": "contact@staltz.com"
+    },
+    {
+      "name": "Dominic Tarr",
+      "email": "dominic.tarr@gmail.com"
+    }
+  ],
   "license": "MIT"
 }
