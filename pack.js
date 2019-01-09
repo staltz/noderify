@@ -10,7 +10,7 @@ function prelude (content, deps, entry) {
     cache[file] = module
     var resolved = require('path').resolve(file)
     var dirname = require('path').dirname(resolved)
-    fn(
+    fn.call(module.exports,
       function (m) {
         if(!d[1][m]) return require(m)
         else         return load (d[1][m])
@@ -33,7 +33,7 @@ module.exports = function (content, deps, entry) {
         var s = '{\n'
         for(var k in content) {
           s += [
-            JSON.stringify(k)+':\n', 
+            JSON.stringify(k)+':\n',
             'function (require, module, exports, __dirname, __filename) {\n',
             content[k],
             '\n},\n'
