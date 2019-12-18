@@ -32,7 +32,7 @@ var argv = require('minimist')(process.argv.slice(2), {
     e: 'electron',
     'ignore-missing': 'ignoreMissing'
   },
-  boolean: ['electron', 'version']
+  boolean: ['electron', 'version', 'verbose']
 })
 
 //startup noderify with optimist's defaults
@@ -66,6 +66,7 @@ var entry = opts.entry || path.resolve(opts._[0])
 
 require('./inject')({
   entry: entry,
+  logEnabled: opts.verbose,
   filter: filter,
   replace: opts.replace || {},
   ignoreMissing: opts.ignoreMissing

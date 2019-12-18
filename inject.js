@@ -77,6 +77,8 @@ function createDepStream(opts) {
       e.id = path.relative(process.cwd(), e.id)
       e.source = e.source.replace(/^\s*#![^\n]*/, '\n')
 
+      if (opts.logEnabled) console.log('Built ' + e.id + '...')
+
       try {
         JSON.parse(e.source)
         e.source = 'module.exports = ' + e.source
