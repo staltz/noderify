@@ -53,6 +53,7 @@ if(!opts._[0]) {
 }
 
 var entry = opts.entry || path.resolve(opts._[0])
+var outFile = opts.o || opts.out
 
 //var replace = {}
 
@@ -72,7 +73,14 @@ require('./inject')({
   ignoreMissing: opts.ignoreMissing
 }, function (err, src) {
   if(err) throw err
-  console.log(src)
+
+  if (outFile) {
+    fs.writeFile(outFile, src, 'utf8', function (err) {
+      if (err) throw err
+    })
+  } else {
+    console.log(src)
+  }
 })
 
 
