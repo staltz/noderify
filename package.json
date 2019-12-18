@@ -17,8 +17,8 @@
   },
   "bin": "./bin.js",
   "devDependencies": {
-    "leveldown": "^1.7.2",
-    "sodium-native": "^1.10.2"
+    "leveldown": "5.4.1",
+    "sodium-native": "2.4.6"
   },
   "scripts": {
     "prepublish": "./test/index.sh && ./index.js index.js > bin.js && npm ls",
