@@ -77,6 +77,8 @@ sys     0m0.033s
 noderify
   -f mod                # excludes mod from the bundle
   -p prelude.js         # specify a custom prelude file (see nodepack's implementation for reference)
+  -o outfile.js         # specify the output file
+  --verbose             # turn on verbose logging
   --filter module_name1
                         # exclude this module from the bundle, use for native addons. (may be repeated)
   --replace.module_name=new-module-name

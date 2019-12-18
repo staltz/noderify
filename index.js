@@ -32,7 +32,7 @@ var argv = require('minimist')(process.argv.slice(2), {
     e: 'electron',
     'ignore-missing': 'ignoreMissing'
   },
-  boolean: ['electron', 'version']
+  boolean: ['electron', 'version', 'verbose']
 })
 
 //startup noderify with optimist's defaults
@@ -47,12 +47,29 @@ var filter = [].concat(opts.filter)
               .concat(native_modules)
               .concat(opts.electron ? electron_modules : [])
 
+if (opts.help || opts.h) {
+  console.error(`
+noderify
+  -f mod                # excludes mod from the bundle
+  -o outfile.js         # specify the output file
+  --verbose             # turn on verbose logging
+  -p prelude.js         # specify a custom prelude file (see nodepack's implementation for reference)
+  --filter module_name1
+                        # exclude this module from the bundle, use for native addons. (may be repeated)
+  --replace.module_name=new-module-name
+                        # map one module to another.
+  `)
+  process.exit(1)
+}
+
+
 if(!opts._[0]) {
   console.error('usage: noderify entry.js > bundle.js')
   process.exit(1)
 }
 
 var entry = opts.entry || path.resolve(opts._[0])
+var outFile = opts.o || opts.out
 
 //var replace = {}
 
@@ -66,12 +83,20 @@ var entry = opts.entry || path.resolve(opts._[0])
 
 require('./inject')({
   entry: entry,
+  logEnabled: opts.verbose,
   filter: filter,
   replace: opts.replace || {},
   ignoreMissing: opts.ignoreMissing
 }, function (err, src) {
   if(err) throw err
-  console.log(src)
+
+  if (outFile) {
+    fs.writeFile(outFile, src, 'utf8', function (err) {
+      if (err) throw err
+    })
+  } else {
+    console.log(src)
+  }
 })
 
 
