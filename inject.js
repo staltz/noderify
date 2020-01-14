@@ -55,8 +55,8 @@ function createDepStream(opts) {
         function (err, file) {
           if(err) return cb (err)
           if (file) {
-            if (file[0] !== '/') {
-              var c = required.split('/')[0]
+            if (!path.isAbsolute(file)) {
+              var c = required.split(path.sep)[0]
               if (c[0] !== '.') console.error('missing dependency. need to install:', c)
             } else if (file && file.substr(-5) === '.node') {
               opts.replace[required] = path.relative(path.dirname(opts.entry), file)
@@ -64,7 +64,7 @@ function createDepStream(opts) {
             }
           }
 
-          cb(null, /^\//.test(file) ? file : null)
+          cb(null, path.isAbsolute(file) ? file : null)
       })
     },
     postFilter: function (id, file, pkg) {
@@ -99,7 +99,7 @@ module.exports = function (opts, cb) {
   .pipe(deterministic(function (err, content, deps, entry) {
       if(err) cb(err)
       else cb(null,
-        (opts.shebang !== false ? '#! /usr/bin/env node\n' : '') + 
+        (opts.shebang !== false ? '#! /usr/bin/env node\n' : '') +
         pack(content, deps, entry)
 
       )
