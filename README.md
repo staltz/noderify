@@ -15,7 +15,7 @@ and even if you have a SSD it may still be slow enough to not feel "snappy"
 on my computer (ThinkPad X220, with spinning disk)
 
 ```
-time npm --version
+$ time npm --version
 2.13.2
 
 real    0m2.384s
@@ -24,7 +24,7 @@ sys     0m0.043s
 
 # okay...
 
-time browserify --version
+$ time browserify --version
 6.2.0
 
 real    0m3.014s
@@ -34,7 +34,7 @@ sys     0m0.097s
 # too slow...
 
 
-time npmd --version
+$ time npmd --version
 1.3.3
 
 real    0m7.447s
@@ -43,7 +43,7 @@ sys     0m0.157s
 
 # wow too slow
 
-time node sbot version # (scuttlebot)
+$ time node sbot version # (scuttlebot)
 6.1.0
 
 real    0m9.103s
@@ -59,9 +59,9 @@ so if you have hundreds you have to wait for each one.
 lets bundle this into one file, so we only read one file, and
 then everything is in memory.
 
-``` js
-noderify scuttlebot/bin.js > b.js
-time node b.js version
+```
+$ noderify scuttlebot/bin.js > b.js
+$ time node b.js version
 6.1.0
 
 real    0m1.038s
