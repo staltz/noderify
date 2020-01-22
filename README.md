@@ -89,7 +89,7 @@ noderify entry.js [flags]
 
   --verbose
     turn on verbose logging
-    alias: v
+    alias: -v
                         
   --replace.module_name=new-module-name
     map one module to another
