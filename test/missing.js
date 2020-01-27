@@ -1,2 +1,1 @@
-
 require('foo-bar-baz')
