@@ -78,11 +78,11 @@ noderify entry.js [flags]
   --out outfile.js
      specify the output file
      alias: -o
-     
-  --filter module_name1           
+
+  --filter module_name1
      exclude this module from the bundle, use for native addons. (may be repeated).
      alias: -f
-     
+
   --prelude prelude.js
      specify a custom prelude file (see nodepack's implementation for reference)
      alias: -p
@@ -90,19 +90,19 @@ noderify entry.js [flags]
   --verbose
     turn on verbose logging
     alias: -v
-                        
+
   --replace.module_name=new-module-name
     map one module to another
-    
+
   --ignoreMissing
     alias: -ignore-missing
-    
+
   --electron
     auto-add common electron modules to ignore, ...
     alias: -e
-  
+
   --version
-  
+
   --help
 ```
 
@@ -110,14 +110,13 @@ If `--out` / `-o` isn't specified the results will be logged to stdout, meaning 
 
 Since `noderify` uses `rc` it configuration may be set in a local `.noderifyrc` file in json format.
 
-``` js
+```js
 {
   "filter": ["module_name1", "module_name2"],
   "replace": {
     "sodium-native": "sodium-javascript"
   }
 }
-
 ```
 
 ## how it works
@@ -127,7 +126,7 @@ the first thing is a `prelude` function which takes content and structure
 of the bundle and assembles it together (injecting `require` and `module` variables, etc)
 this function is self-evaluating so running the javascript bundle runs the program.
 
-``` js
+```js
 prelude(content, dependencies, entry)
 ```
 
@@ -137,7 +136,7 @@ and might even have different names. Since the content is hashed,
 if different versions of a single module occur, but have different names,
 they are not duplicated.
 
-``` js
+```js
 content = {<hash(file)>: <file>, ..}
 ```
 
@@ -150,7 +149,7 @@ by pointing to the actual filename that expression maps to, the noderify
 prelude function does not require an internal model of the file system,
 it can simply look up the mappings for each file.
 
-``` js
+```js
 dependencies = {
   <filename>: [hash(file), { <relative_require>: <filename>, ...}]
 }
@@ -168,6 +167,3 @@ a dynamic linker could combine multiple dependency trees into a single bundle.
 ## License
 
 MIT
-
-
-
