@@ -6,7 +6,11 @@ function prelude(content, deps, entry) {
     if (cache[file]) return cache[file].exports
     if (!d) return require(file)
     var fn = content[d[0]] //the actual module
-    var module = (cache[file] = {exports: {}, parent: file !== entry})
+    var module = (cache[file] = {
+      exports: {},
+      parent: file !== entry,
+      require: require
+    })
     cache[file] = module
     var resolved = require('path').resolve(file)
     var dirname = require('path').dirname(resolved)

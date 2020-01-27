@@ -50,23 +50,25 @@ noderify=./index.js
 echo "Test module not found error:"
 not_okay $noderify test/missing.js > /dev/null
 
-$noderify test/self-reference.js > _bundle.js 
+$noderify test/self-reference.js > _bundle.js
 was_okay
 okay node _bundle.js
 
 echo "TEST NOT FOUND, but replace missing module"
-$noderify test/missing.js --replace.foo-bar-baz=./fbb > _bundle.js 
+$noderify test/missing.js --replace.foo-bar-baz=./fbb > _bundle.js
 was_okay
 okay node _bundle.js
 
+$noderify test/mod-req.js > _bundle.js
+was_okay
+okay node _bundle.js
 
-
-$noderify test/native.js --filter sodium-native --filter leveldown > _bundle.js 
+$noderify test/native.js --filter sodium-native --filter leveldown > _bundle.js
 was_okay
 okay node _bundle.js
 
 echo "replace another way"
-$noderify test/native.js --no-replace.sodium-native --no-replace.leveldown > _bundle.js 
+$noderify test/native.js --no-replace.sodium-native --no-replace.leveldown > _bundle.js
 was_okay
 okay node _bundle.js
 
