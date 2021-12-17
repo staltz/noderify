@@ -90,17 +90,17 @@ var filter = []
   .concat(opts.electron ? electron_modules : [])
 
 if (opts.help || opts.h) {
-  console.error(`
-noderify
-  -f mod                # excludes mod from the bundle
-  -o outfile.js         # specify the output file
-  --verbose             # turn on verbose logging
-  -p prelude.js         # specify a custom prelude file (see nodepack's implementation for reference)
-  --filter module_name1
-                        # exclude this module from the bundle, use for native addons. (may be repeated)
-  --replace.module_name=new-module-name
-                        # map one module to another.
+  console.error(`noderify entry.js [flags]\n
+  --filter, -f          Ignores a module from the bundle,
+                        use this for native add-ons
+  --replace.foo=bar     Replaces module "foo" with module "bar"
+  --out, -o             Specify the output file
+  --electron, -e        Ignore common electron modules
+  --ignoreMissing       Ignore modules that were not found
+  --verbose             Turn on verbose logging
+  --help                Show this help info
   `)
+  // --prelude, -p         specify a custom prelude file
   process.exit(1)
 }
 

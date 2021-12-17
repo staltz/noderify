@@ -75,35 +75,15 @@ sys     0m0.033s
 
 ```
 noderify entry.js [flags]
-  --out outfile.js
-     specify the output file
-     alias: -o
 
-  --filter module_name1
-     exclude this module from the bundle, use for native addons. (may be repeated).
-     alias: -f
-
-  --prelude prelude.js
-     specify a custom prelude file (see nodepack's implementation for reference)
-     alias: -p
-
-  --verbose
-    turn on verbose logging
-    alias: -v
-
-  --replace.module_name=new-module-name
-    map one module to another
-
-  --ignoreMissing
-    alias: -ignore-missing
-
-  --electron
-    auto-add common electron modules to ignore, ...
-    alias: -e
-
-  --version
-
-  --help
+  --filter, -f          ignores a module from the bundle,
+                        use this for native add-ons
+  --replace.foo=bar     replaces module "foo" with module "bar"
+  --out, -o             specify the output file
+  --electron, -e        ignore common electron modules
+  --ignoreMissing       ignore modules that were not found
+  --verbose             turn on verbose logging
+  --help                show this help info
 ```
 
 If `--out` / `-o` isn't specified the results will be logged to stdout, meaning you can shovel the results into a new file (e.g. `noderify entry.js > bundle.js`)
