@@ -34,10 +34,10 @@ tidy () {
   rm _*.js 2> /dev/null
 }
 
-echo $PWD
+#echo $PWD
 #cd $(dirname $BASH_SOURCE)
 
-echo $PWD
+#echo $PWD
 tidy
 
 noderify=./index.js
