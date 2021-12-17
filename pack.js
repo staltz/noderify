@@ -12,7 +12,7 @@ function prelude(content, deps, entry) {
       require: require
     })
     cache[file] = module
-    var resolved = require('path').resolve(file)
+    var resolved = require('path').resolve(__dirname, file)
     var dirname = require('path').dirname(resolved)
     fn.call(
       module.exports,
