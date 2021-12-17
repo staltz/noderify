@@ -3,6 +3,11 @@
   "description": "browserify for node",
   "version": "5.0.0",
   "homepage": "https://github.com/staltz/noderify",
+  "bin": "./bin.js",
+  "main": "./index.js",
+  "files": [
+    "*.js"
+  ],
   "repository": {
     "type": "git",
     "url": "git://github.com/staltz/noderify.git"
@@ -15,13 +20,12 @@
     "sort-stream": "^1.0.1",
     "through2": "~2.0.3"
   },
-  "bin": "./bin.js",
   "devDependencies": {
     "leveldown": "5.4.1",
     "sodium-native": "2.4.6"
   },
   "scripts": {
-    "prepublish": "./test/index.sh && ./index.js index.js > bin.js && npm ls",
+    "prepublish": "./test/index.sh && ./index.js index.js > bin.js",
     "test": "./test/index.sh"
   },
   "contributors": [
