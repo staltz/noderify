@@ -40,6 +40,7 @@ var native_modules = [
   'util',
   'v8',
   'vm',
+  'worker_threads',
   'zlib'
 ]
 
