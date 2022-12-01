@@ -6,6 +6,7 @@ var fs = require('fs')
 // node.js native modules
 var native_modules = [
   'assert',
+  'async_hooks',
   'buffer',
   'child_process',
   'cluster',
