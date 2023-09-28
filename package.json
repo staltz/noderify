@@ -13,16 +13,16 @@
     "url": "git://github.com/staltz/noderify.git"
   },
   "dependencies": {
-    "minimist": "^1.1.2",
-    "module-deps": "~6.1.0",
-    "rc": "^1.1.6",
-    "resolve": "~1.7.1",
+    "minimist": "^1.2.8",
+    "module-deps": "~6.2.3",
+    "rc": "^1.2.8",
+    "resolve": "~1.22.6",
     "sort-stream": "^1.0.1",
-    "through2": "~2.0.3"
+    "through2": "~2.0.5"
   },
   "devDependencies": {
-    "leveldown": "5.4.1",
-    "sodium-native": "2.4.6"
+    "leveldown": "5.6.0",
+    "sodium-native": "2.4.9"
   },
   "scripts": {
     "prepublish": "./test/index.sh && ./index.js index.js > bin.js",
