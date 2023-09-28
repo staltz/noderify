@@ -1,5 +1,5 @@
 
-const opts = { }
+const opts = {}
 // Node 14
 const undef = opts?.timeout // Optional chaining
 

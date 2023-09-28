@@ -6,9 +6,9 @@
 
 was_okay () {
   if [ $? -eq 0 ]; then
-    echo "  ✓ Okay"
+    echo "  \033[0;32m✓ OK\033[0m"
   else
-    echo "  ✗ NOT OKAY"
+    echo "  \033[0;31m✗ NOT OK\033[0m"
     exit 1
   fi
 }
@@ -47,16 +47,16 @@ noderify=./index.js
 #//
 #//  okay node _bundle.js
 
-echo Test module not found error:
+echo Test NOT FOUND found error:
 not_okay $noderify test/missing.js > /dev/null
-
-echo Test self-reference:
-$noderify test/self-reference.js > _bundle.js
-was_okay
-okay node _bundle.js
 
 echo Test NOT FOUND, but replace missing module:
 $noderify test/missing.js --replace.foo-bar-baz=./fbb > _bundle.js
+was_okay
+okay node _bundle.js
+
+echo Test self-reference:
+$noderify test/self-reference.js > _bundle.js
 was_okay
 okay node _bundle.js
 
