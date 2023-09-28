@@ -42,7 +42,8 @@ var native_modules = [
   'v8',
   'vm',
   'worker_threads',
-  'zlib'
+  'zlib',
+  'supports-color' // debug tests to see if this is present by requiring it
 ]
 
 var electron_modules = [

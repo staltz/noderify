@@ -1,9 +1,11 @@
 var moduleDeps = require('module-deps')
+var detective = require('detective')
 var resolve = require('resolve')
-var deterministic = require('./deterministic')
-var pack = require('./pack')
 var path = require('path')
 var fs = require('fs')
+
+var deterministic = require('./deterministic')
+var pack = require('./pack')
 
 function exists(p) {
   try {
@@ -71,6 +73,19 @@ function createDepStream(opts) {
 
           cb(null, path.isAbsolute(file) ? file : null)
         }
+      )
+    },
+    detect: function(src) {
+      // for the purposes of detecting "require" statements, we can allow the dropping
+      // some new language features that detective chokes on
+      return detective(
+        src
+          .replace(/\?\?=/g, '=') // nullish coalescing assignment
+          .replace(/\?\?/g, '||') // nullish coalescing
+          .replace(/\?\.\(/g, '(') // optional chaining (into a function)
+          .replace(/\?\./g, '.') // optional chaining (into a property)
+
+        // NOTE { ecmaVersion: 2023 } should cover this, but doesn't
       )
     },
     postFilter: function(id, file, pkg) {
